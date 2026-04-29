@@ -1,21 +1,31 @@
 const DIENSTEN = [
   {
-    titel: 'Verjaardagsdiner',
-    omschrijving: 'Vier je verjaardag met een luxe meergangendiner, volledig op maat samengesteld voor jou en je gasten.',
-    icon: '🎂',
-    detail: 'Vanaf € 150 + € 25 p.p.',
-  },
-  {
-    titel: 'Diner aan huis',
-    omschrijving: 'Romantisch of gezellig — een intiem diner voor twee tot tien personen, bereid in jouw eigen keuken.',
+    titel: '3 gangen diner',
+    omschrijving: 'Een volledig driegangendiner bereid in jouw eigen keuken. Van amuse tot dessert — jij hoeft alleen maar te genieten.',
     icon: '🍽️',
-    detail: 'Vanaf € 200 + € 30 p.p.',
+    prijs: '€ 55,-',
+    detail: 'p.p. · vanaf 4 personen',
   },
   {
-    titel: 'Feestje & borrel',
-    omschrijving: 'Hapjes, buffet of een volledig menu voor je feest. Ik regel alles achter de schermen, jij geniet.',
+    titel: '5 gangen diner',
+    omschrijving: 'Een uitgebreide culinaire avond met vijf gangen vol smaak en verfijning. Perfect voor een bijzondere gelegenheid.',
+    icon: '⭐',
+    prijs: '€ 70,-',
+    detail: 'p.p. · vanaf 4 personen',
+  },
+  {
+    titel: 'Groot feest',
+    omschrijving: 'Hapjes, een smaakvol hoofdgerecht en een heerlijk toetje voor jouw feest. Ik regel alles, jij geniet.',
     icon: '🥂',
-    detail: 'Vanaf € 175 + € 20 p.p.',
+    prijs: '€ 35,-',
+    detail: 'p.p. · vanaf 10 personen',
+  },
+  {
+    titel: 'Wijn arrangement',
+    omschrijving: 'Zorgvuldig geselecteerde wijnen passend bij elke gang. Een mooie aanvulling op elk menu.',
+    icon: '🍷',
+    prijs: '€ 4,-',
+    detail: 'p.p. per gang',
   },
 ];
 
@@ -36,7 +46,7 @@ export default function Services() {
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {DIENSTEN.map((d) => (
             <div
               key={d.titel}
@@ -56,7 +66,10 @@ export default function Services() {
               <p className="text-stone-500 text-sm leading-relaxed mb-6 flex-1">{d.omschrijving}</p>
 
               <div className="pt-5 border-t border-stone-100">
-                <span className="text-amber-600 text-sm font-medium">{d.detail}</span>
+                <span className="text-3xl font-bold text-stone-900" style={{ fontFamily: 'var(--font-display)' }}>
+                  {d.prijs}
+                </span>
+                <p className="text-stone-400 text-xs mt-1">{d.detail}</p>
               </div>
             </div>
           ))}
