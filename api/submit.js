@@ -154,12 +154,14 @@ module.exports = async function handler(req, res) {
         </div>
 
         <!-- Foto onderin -->
-        <img
-          src="https://www.cheftijssen.nl/viego.jpg"
-          alt="Viego Tijssen"
-          width="560"
-          style="display:block;width:100%;height:220px;object-fit:cover;object-position:center top;"
-        />
+        <div style="background:#fafaf9;padding:0 40px 40px;text-align:center;">
+          <img
+            src="https://www.cheftijssen.nl/viego.jpg"
+            alt="Viego Tijssen"
+            width="260"
+            style="display:block;width:260px;height:340px;object-fit:cover;object-position:center top;border-radius:16px;margin:0 auto;"
+          />
+        </div>
 
         <!-- Footer -->
         <div style="background:#0f0f0f;padding:20px 40px;text-align:center;">
