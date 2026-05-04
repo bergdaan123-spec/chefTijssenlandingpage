@@ -31,6 +31,7 @@ module.exports = async function handler(req, res) {
     locatie,
     personen: parseInt(personen, 10),
     type,
+    offerte_totaal: 0,
     status: 'nieuw',
     bron: 'website',
   });
