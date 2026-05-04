@@ -110,19 +110,8 @@ module.exports = async function handler(req, res) {
           <p style="margin:0;color:#888;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;">Aanvraag ontvangen</p>
         </div>
 
-        <!-- Foto van Viego -->
-        <div style="background:#fafaf9;padding:40px 40px 0;text-align:center;">
-          <img
-            src="https://www.cheftijssen.nl/viego.jpg"
-            alt="Chef Tijssen — Viego"
-            width="120"
-            height="120"
-            style="border-radius:50%;object-fit:cover;border:3px solid #fbbf24;display:block;margin:0 auto;"
-          />
-        </div>
-
         <!-- Body -->
-        <div style="padding:32px 40px 40px;background:#fafaf9;">
+        <div style="padding:40px 40px 32px;background:#fafaf9;">
           <h2 style="margin:0 0 16px;color:#1c1917;font-size:22px;font-weight:600;text-align:center;">Hoi ${naam},</h2>
           <p style="margin:0 0 16px;color:#44403c;line-height:1.8;font-size:15px;text-align:center;">
             Bedankt voor het kiezen van Chef Tijssen. Het is fijn dat je jouw avond aan mij toevertrouwt — ik ga er iets moois van maken.
@@ -157,14 +146,20 @@ module.exports = async function handler(req, res) {
           </div>
 
           <!-- Handtekening -->
-          <div style="display:flex;align-items:center;gap:16px;padding-top:8px;">
-            <div>
-              <p style="margin:0 0 4px;color:#1c1917;font-weight:600;font-size:15px;">Viego Tijssen</p>
-              <p style="margin:0;color:#78716c;font-size:13px;">Chef Tijssen — Persoonlijk koken bij jou thuis</p>
-              <p style="margin:4px 0 0;color:#fbbf24;font-size:13px;">cheftijssen.nl</p>
-            </div>
+          <div style="border-top:1px solid #e7e5e4;padding-top:24px;">
+            <p style="margin:0 0 4px;color:#1c1917;font-weight:600;font-size:15px;">Viego Tijssen</p>
+            <p style="margin:0;color:#78716c;font-size:13px;">Chef Tijssen — Persoonlijk koken bij jou thuis</p>
+            <p style="margin:4px 0 0;color:#fbbf24;font-size:13px;">cheftijssen.nl</p>
           </div>
         </div>
+
+        <!-- Foto onderin -->
+        <img
+          src="https://www.cheftijssen.nl/viego.jpg"
+          alt="Viego Tijssen"
+          width="560"
+          style="display:block;width:100%;height:220px;object-fit:cover;object-position:center top;"
+        />
 
         <!-- Footer -->
         <div style="background:#0f0f0f;padding:20px 40px;text-align:center;">
