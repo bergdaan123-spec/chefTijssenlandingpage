@@ -3,7 +3,7 @@ import IntakeForm from './IntakeForm';
 import AvailabilityChecker from './AvailabilityChecker';
 import QuotePreview from './QuotePreview';
 
-const STAPPEN = ['Gegevens', 'Beschikbaarheid', 'Offerte'];
+const STAPPEN = ['Gegevens', 'Beschikbaarheid', 'Bevestiging'];
 
 const LEEG_FORMULIER = {
   naam: '',

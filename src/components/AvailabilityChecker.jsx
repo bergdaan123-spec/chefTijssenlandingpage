@@ -47,7 +47,7 @@ export default function AvailabilityChecker({ datum, onVolgende, onTerug }) {
             onClick={onVolgende}
             className="flex-1 bg-stone-900 text-white font-semibold py-3.5 rounded-xl text-sm hover:bg-stone-800 active:scale-[0.98] transition-all"
           >
-            Bekijk offerte →
+            Aanvraag versturen →
           </button>
         )}
       </div>
