@@ -1,7 +1,8 @@
 const EVENT_TYPES = [
-  { value: 'verjaardag', label: 'Verjaardagsdiner' },
-  { value: 'diner', label: 'Diner aan huis' },
-  { value: 'feestje', label: 'Feestje / borrel' },
+  { value: '3gangen', label: '3 gangen diner aan huis — € 55,- p.p.' },
+  { value: '5gangen', label: '5 gangen diner aan huis — € 70,- p.p.' },
+  { value: 'feest', label: 'Groot feest (hapjes + hoofdgerecht + toetje) — € 35,- p.p.' },
+  { value: 'wijn', label: 'Wijn arrangement — € 4,- p.p. per gang' },
 ];
 
 const inputClass =
