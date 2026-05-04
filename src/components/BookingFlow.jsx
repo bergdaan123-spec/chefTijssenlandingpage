@@ -45,7 +45,7 @@ export default function BookingFlow() {
           <span className="text-amber-600 uppercase tracking-[0.2em] text-xs font-medium">Direct aanvragen</span>
           <h2
             style={{ fontFamily: 'var(--font-display)' }}
-            className="text-4xl md:text-5xl font-semibold text-stone-900 mt-3 mb-4"
+            className="text-4xl md:text-5xl font-semibold text-amber-400 mt-3 mb-4"
           >
             Plan jouw avond
           </h2>

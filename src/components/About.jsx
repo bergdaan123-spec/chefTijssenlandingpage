@@ -8,7 +8,7 @@ export default function About() {
           <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-amber-500 uppercase tracking-[0.25em] text-xs font-semibold mb-4">
             Over de chef
           </p>
-          <h2 style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-3xl md:text-4xl font-bold text-stone-900 mb-6 leading-tight">
+          <h2 style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-3xl md:text-4xl font-bold text-amber-400 mb-6 leading-tight">
             Hoi, ik ben Viego
           </h2>
           <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-stone-500 text-base leading-relaxed mb-4">

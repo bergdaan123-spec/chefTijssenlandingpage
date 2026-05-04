@@ -38,7 +38,7 @@ export default function Services() {
           <span className="text-amber-600 uppercase tracking-[0.2em] text-xs font-medium">Aanbod</span>
           <h2
             style={{ fontFamily: 'var(--font-display)' }}
-            className="text-4xl md:text-5xl font-semibold text-stone-900 mt-3 mb-4"
+            className="text-4xl md:text-5xl font-semibold text-amber-400 mt-3 mb-4"
           >
             Wat ik aanbied
           </h2>
@@ -59,14 +59,14 @@ export default function Services() {
 
               <h3
                 style={{ fontFamily: 'var(--font-display)' }}
-                className="text-xl font-semibold text-stone-900 mb-3"
+                className="text-xl font-semibold text-amber-400 mb-3"
               >
                 {d.titel}
               </h3>
               <p className="text-stone-500 text-sm leading-relaxed mb-6 flex-1">{d.omschrijving}</p>
 
               <div className="pt-5 border-t border-stone-100">
-                <span className="text-3xl font-bold text-stone-900" style={{ fontFamily: 'var(--font-display)' }}>
+                <span className="text-3xl font-bold text-amber-400" style={{ fontFamily: 'var(--font-display)' }}>
                   {d.prijs}
                 </span>
                 <p className="text-stone-400 text-xs mt-1">{d.detail}</p>

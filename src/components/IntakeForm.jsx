@@ -6,7 +6,7 @@ const EVENT_TYPES = [
 ];
 
 const inputClass =
-  'w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-900 placeholder:text-stone-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition';
+  'w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-amber-400 placeholder:text-stone-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition';
 
 function Label({ children }) {
   return (
@@ -27,7 +27,7 @@ export default function IntakeForm({ data, onChange, onVolgende }) {
 
   return (
     <div>
-      <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-2xl font-semibold text-stone-900 mb-6">
+      <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-2xl font-semibold text-amber-400 mb-6">
         Jouw gegevens
       </h3>
 
