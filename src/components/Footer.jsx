@@ -30,7 +30,7 @@ export default function Footer() {
                 key={label}
                 onClick={() => document.getElementById(['over-mij', 'diensten', 'boeken'][i])?.scrollIntoView({ behavior: 'smooth' })}
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
-                className="text-stone-500 hover:text-amber-400 text-xs tracking-wide transition-colors"
+                className="text-amber-400 hover:text-amber-300 text-xs tracking-wide transition-colors"
               >
                 {label}
               </button>
