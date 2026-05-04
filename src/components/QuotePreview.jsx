@@ -16,7 +16,7 @@ export default function QuotePreview({ data }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
         </svg>
       </div>
-      <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-2xl font-semibold text-amber-400 mb-3">
+      <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-2xl font-semibold text-stone-900 mb-3">
         Aanvraag ontvangen!
       </h3>
       <p className="text-stone-500 text-sm leading-relaxed max-w-xs mx-auto">
