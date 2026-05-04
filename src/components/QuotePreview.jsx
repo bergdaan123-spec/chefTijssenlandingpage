@@ -1,17 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export default function QuotePreview({ data }) {
-  const [status, setStatus] = useState('loading');
-
   useEffect(() => {
     fetch('/api/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
-    })
-      .then((res) => { if (!res.ok) throw new Error(); setStatus('success'); })
-      .catch(() => setStatus('success')); // toon altijd bevestiging
-  }, []);
+    }).catch(() => {});
+  }, [data]);
 
   return (
     <div className="text-center py-8">
