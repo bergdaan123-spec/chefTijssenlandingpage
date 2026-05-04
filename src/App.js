@@ -3,7 +3,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import BookingFlow from './components/BookingFlow';
-import logo from './assets/WhatsApp Image 2026-04-24 at 18.23.35.jpeg';
+import Footer from './components/Footer';
 
 function App() {
   function scrollNaarBoeken() {
@@ -29,10 +29,7 @@ function App() {
       <About />
       <Services />
       <BookingFlow />
-      <footer className="bg-stone-950 text-stone-500 text-center py-10 text-sm">
-        <img src={logo} alt="Chef Tijssen" className="h-48 w-48 rounded-full object-cover mx-auto mb-4" />
-        <p>© {new Date().getFullYear()} — Persoonlijk koken bij jou thuis</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
