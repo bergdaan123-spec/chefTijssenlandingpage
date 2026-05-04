@@ -4,7 +4,7 @@ function ContactRegel({ icon, tekst }) {
       <svg className="w-4 h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
       </svg>
-      <span style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-amber-400 text-sm italic">
+      <span style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-stone-300 text-sm">
         {tekst}
       </span>
     </div>
