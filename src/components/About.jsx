@@ -5,7 +5,7 @@ export default function About() {
 
         {/* Tekst links */}
         <div className="flex-1">
-          <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-amber-500 uppercase tracking-[0.25em] text-xs font-semibold mb-4">
+          <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-amber-400 uppercase tracking-[0.25em] text-xs font-semibold mb-4">
             Over de chef
           </p>
           <h2 style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-3xl md:text-4xl font-bold text-stone-900 mb-6 leading-tight">

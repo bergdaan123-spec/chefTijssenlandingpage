@@ -1,7 +1,7 @@
 function ContactRegel({ icon, tekst }) {
   return (
     <div className="flex items-center gap-3">
-      <svg className="w-4 h-4 text-amber-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-4 h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
       </svg>
       <span style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-amber-400 text-sm italic">
@@ -18,7 +18,7 @@ export default function Footer() {
 
         {/* Links: tagline */}
         <div className="flex flex-col gap-4 md:border-r md:border-stone-800 md:pr-12">
-          <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-amber-500 uppercase tracking-[0.2em] text-xs font-semibold">
+          <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-amber-400 uppercase tracking-[0.2em] text-xs font-semibold">
             Chef Tijssen
           </p>
           <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-stone-400 text-sm leading-relaxed">
@@ -45,7 +45,7 @@ export default function Footer() {
 
         {/* Rechts: contact */}
         <div className="flex flex-col gap-5 md:border-l md:border-stone-800 md:pl-12">
-          <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-amber-500 uppercase tracking-[0.2em] text-xs font-semibold">
+          <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-amber-400 uppercase tracking-[0.2em] text-xs font-semibold">
             Contact
           </p>
           <ContactRegel

@@ -42,7 +42,7 @@ export default function BookingFlow() {
       <div className="max-w-xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
-          <span className="text-amber-600 uppercase tracking-[0.2em] text-xs font-medium">Direct aanvragen</span>
+          <span className="text-amber-400 uppercase tracking-[0.2em] text-xs font-medium">Direct aanvragen</span>
           <h2
             style={{ fontFamily: 'var(--font-display)' }}
             className="text-4xl md:text-5xl font-semibold text-stone-900 mt-3 mb-4"
@@ -66,7 +66,7 @@ export default function BookingFlow() {
                         ${i < stap
                           ? 'bg-stone-900 border-stone-900 text-white'
                           : i === stap
-                          ? 'border-amber-400 text-amber-600 bg-amber-50'
+                          ? 'border-amber-400 text-amber-400 bg-amber-50'
                           : 'border-stone-200 text-stone-300 bg-white'
                         }`}
                     >

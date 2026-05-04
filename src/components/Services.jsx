@@ -35,7 +35,7 @@ export default function Services() {
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="text-amber-600 uppercase tracking-[0.2em] text-xs font-medium">Aanbod</span>
+          <span className="text-amber-400 uppercase tracking-[0.2em] text-xs font-medium">Aanbod</span>
           <h2
             style={{ fontFamily: 'var(--font-display)' }}
             className="text-4xl md:text-5xl font-semibold text-stone-900 mt-3 mb-4"
