@@ -145,22 +145,24 @@ module.exports = async function handler(req, res) {
             </table>
           </div>
 
-          <!-- Handtekening -->
-          <div style="border-top:1px solid #e7e5e4;padding-top:24px;">
-            <p style="margin:0 0 4px;color:#1c1917;font-weight:600;font-size:15px;">Viego Tijssen</p>
-            <p style="margin:0;color:#78716c;font-size:13px;">Chef Tijssen — Persoonlijk koken bij jou thuis</p>
-            <p style="margin:4px 0 0;color:#fbbf24;font-size:13px;">cheftijssen.nl</p>
-          </div>
-        </div>
-
-        <!-- Foto onderin -->
-        <div style="background:#fafaf9;padding:0 40px 40px;text-align:center;">
-          <img
-            src="https://www.cheftijssen.nl/viego.jpg"
-            alt="Viego Tijssen"
-            width="260"
-            style="display:block;width:260px;height:340px;object-fit:cover;object-position:center top;border-radius:16px;margin:0 auto;"
-          />
+          <!-- Handtekening + foto naast elkaar -->
+          <table style="width:100%;border-collapse:collapse;border-top:1px solid #e7e5e4;padding-top:0;">
+            <tr>
+              <td style="padding-top:24px;vertical-align:middle;width:55%;">
+                <p style="margin:0 0 4px;color:#1c1917;font-weight:600;font-size:15px;">Viego Tijssen</p>
+                <p style="margin:0;color:#78716c;font-size:13px;">Chef Tijssen — Persoonlijk koken bij jou thuis</p>
+                <p style="margin:4px 0 0;color:#fbbf24;font-size:13px;">cheftijssen.nl</p>
+              </td>
+              <td style="padding-top:24px;vertical-align:middle;text-align:right;width:45%;">
+                <img
+                  src="https://www.cheftijssen.nl/viego.jpg"
+                  alt="Viego Tijssen"
+                  width="160"
+                  style="display:inline-block;width:160px;height:200px;object-fit:cover;object-position:center top;border-radius:12px;"
+                />
+              </td>
+            </tr>
+          </table>
         </div>
 
         <!-- Footer -->
