@@ -4,8 +4,13 @@ import About from './components/About';
 import Services from './components/Services';
 import BookingFlow from './components/BookingFlow';
 import Footer from './components/Footer';
+import Admin from './components/Admin';
+
+const isAdmin = window.location.pathname === '/admin';
 
 function App() {
+  if (isAdmin) return <Admin />;
+
   function scrollNaarBoeken() {
     document.getElementById('boeken')?.scrollIntoView({ behavior: 'smooth' });
   }
