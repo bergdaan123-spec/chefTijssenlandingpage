@@ -56,6 +56,7 @@ export default function Privacy() {
           <ul className="mt-3 space-y-1">
             <li className="flex items-start gap-2"><span className="text-amber-400 mt-1">—</span><span>Softwareprogramma Resend voor het automatisch versturen van e-mails.</span></li>
             <li className="flex items-start gap-2"><span className="text-amber-400 mt-1">—</span><span>Softwareprogramma Brevo voor het uitvoeren van e-mailcampagnes.</span></li>
+            <li className="flex items-start gap-2"><span className="text-amber-400 mt-1">—</span><span>Softwareprogramma Supabase voor het opslaan van aanvragen en persoonsgegevens.</span></li>
           </ul>
         </Sectie>
 
