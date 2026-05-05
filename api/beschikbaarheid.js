@@ -23,7 +23,11 @@ module.exports = async function handler(req, res) {
 
   // POST — stel beschikbaarheid in (alleen admin)
   if (req.method === 'POST') {
-    if (req.headers.authorization !== `Bearer ${process.env.ADMIN_SECRET}`) {
+    const verwacht = process.env.ADMIN_SECRET;
+    if (!verwacht) {
+      return res.status(500).json({ error: 'ADMIN_SECRET niet ingesteld op server' });
+    }
+    if (req.headers.authorization !== `Bearer ${verwacht}`) {
       return res.status(401).json({ error: 'Niet geautoriseerd' });
     }
 

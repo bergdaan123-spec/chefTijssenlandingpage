@@ -69,6 +69,11 @@ export default function Admin() {
 
     if (res.status === 401) {
       setFout('Verkeerd wachtwoord.');
+    } else if (res.status === 500) {
+      const body = await res.json().catch(() => ({}));
+      setFout(body.error?.includes('ADMIN_SECRET')
+        ? 'Server-fout: ADMIN_SECRET niet ingesteld in Vercel. Ga naar Settings → Environment Variables.'
+        : 'Server-fout — probeer opnieuw.');
     } else {
       setAdminSecret(wachtwoord);
       setIngelogd(true);
@@ -93,6 +98,12 @@ export default function Admin() {
     if (res.status === 401) {
       setFout('Verkeerd wachtwoord — log opnieuw in.');
       setIngelogd(false);
+    } else if (res.status === 500) {
+      const body = await res.json().catch(() => ({}));
+      if (body.error?.includes('ADMIN_SECRET')) {
+        setFout('Server-fout: ADMIN_SECRET is niet ingesteld in Vercel. Ga naar Settings → Environment Variables.');
+        setIngelogd(false);
+      }
     } else if (res.ok) {
       setBeschikbaarheid(prev => ({ ...prev, [datum]: nieuw }));
     }
