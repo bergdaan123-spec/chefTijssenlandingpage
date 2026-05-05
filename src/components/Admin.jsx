@@ -54,11 +54,25 @@ export default function Admin() {
       });
   }, [ingelogd]);
 
-  function login() {
+  async function login() {
     if (!wachtwoord.trim()) return;
-    setAdminSecret(wachtwoord);
-    setIngelogd(true);
     setFout('');
+
+    const res = await fetch('/api/beschikbaarheid', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${wachtwoord}`,
+      },
+      body: JSON.stringify({ datum: '2000-01-01', beschikbaar: true }),
+    });
+
+    if (res.status === 401) {
+      setFout('Verkeerd wachtwoord.');
+    } else {
+      setAdminSecret(wachtwoord);
+      setIngelogd(true);
+    }
   }
 
   async function toggleDag(datum) {
