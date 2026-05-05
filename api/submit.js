@@ -101,6 +101,18 @@ module.exports = async function handler(req, res) {
     to: email,
     subject: `${naam}, je avond staat in de agenda 🍽️`,
     html: `
+      <!DOCTYPE html>
+      <html>
+      <head>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <style>
+        @media only screen and (max-width:600px) {
+          .sig-tekst { display:block !important; width:100% !important; padding-bottom:0 !important; }
+          .sig-foto  { display:block !important; width:100% !important; text-align:center !important; padding-top:16px !important; }
+        }
+      </style>
+      </head>
+      <body style="margin:0;padding:0;background:#f4f4f4;">
       <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;background:#ffffff;">
 
         <!-- Header -->
@@ -145,15 +157,15 @@ module.exports = async function handler(req, res) {
             </table>
           </div>
 
-          <!-- Handtekening + foto naast elkaar -->
-          <table style="width:100%;border-collapse:collapse;border-top:1px solid #e7e5e4;padding-top:0;">
+          <!-- Handtekening: naast elkaar op desktop, gestapeld op mobiel -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e7e5e4;">
             <tr>
-              <td style="padding-top:24px;vertical-align:middle;width:55%;">
+              <td class="sig-tekst" valign="middle" style="padding-top:24px;width:55%;vertical-align:middle;">
                 <p style="margin:0 0 4px;color:#1c1917;font-weight:600;font-size:15px;">Viego Tijssen</p>
                 <p style="margin:0;color:#78716c;font-size:13px;">Chef Tijssen — Persoonlijk koken bij jou thuis</p>
-                <p style="margin:4px 0 0;color:#fbbf24;font-size:13px;">cheftijssen.nl</p>
+                <p style="margin:4px 0 0;font-size:13px;"><a href="https://cheftijssen.nl" style="color:#fbbf24;text-decoration:none;">cheftijssen.nl</a></p>
               </td>
-              <td style="padding-top:24px;vertical-align:middle;text-align:right;width:45%;">
+              <td class="sig-foto" valign="middle" align="right" style="padding-top:24px;width:45%;vertical-align:middle;text-align:right;">
                 <img
                   src="https://www.cheftijssen.nl/viego.jpg"
                   alt="Viego Tijssen"
@@ -170,6 +182,8 @@ module.exports = async function handler(req, res) {
           <p style="margin:0;color:#444;font-size:11px;letter-spacing:0.1em;">CHEF TIJSSEN &nbsp;·&nbsp; Persoonlijk koken bij jou thuis</p>
         </div>
       </div>
+      </body>
+      </html>
     `,
   });
 
