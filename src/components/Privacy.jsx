@@ -81,7 +81,7 @@ export default function Privacy() {
                 {[
                   { cat: 'E-mailprovider', naam: 'Resend', jurisdictie: 'Verenigde Staten', doel: 'Automatisch versturen van e-mails', data: 'Naam, e-mailadres' },
                   { cat: 'E-mailmarketing', naam: 'Brevo', jurisdictie: 'Europese Unie', doel: 'Uitvoeren van e-mailcampagnes', data: 'Naam, e-mailadres' },
-                  { cat: 'Database', naam: 'Supabase', jurisdictie: 'Europese Unie', doel: 'Opslaan van aanvragen', data: 'Naam, e-mailadres, datum, locatie, aantal personen, type dienst' },
+                  { cat: 'Database', naam: 'Supabase', jurisdictie: 'Verenigde Staten', doel: 'Opslaan van aanvragen', data: 'Naam, e-mailadres, datum, locatie, aantal personen, type dienst' },
                 ].map((r) => (
                   <tr key={r.naam} className="bg-white hover:bg-stone-50 transition-colors">
                     <td className="px-5 py-4 text-stone-600">{r.cat}</td>
