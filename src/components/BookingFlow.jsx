@@ -88,7 +88,7 @@ export default function BookingFlow() {
           {/* Step content */}
           <div className="px-8 py-8">
             {stap === 0 && <IntakeForm data={formData} onChange={handleChange} onVolgende={volgende} />}
-            {stap === 1 && <AvailabilityChecker datum={formData.datum} onVolgende={volgende} onTerug={terug} />}
+            {stap === 1 && <AvailabilityChecker datum={formData.datum} onDatumKiezen={(d) => handleChange('datum', d)} onVolgende={volgende} onTerug={terug} />}
             {stap === 2 && <QuotePreview data={formData} onTerug={terug} />}
           </div>
         </div>

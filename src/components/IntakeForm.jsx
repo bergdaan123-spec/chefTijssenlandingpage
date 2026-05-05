@@ -20,7 +20,6 @@ export default function IntakeForm({ data, onChange, onVolgende }) {
   const isGeldig =
     data.naam.trim() &&
     data.email.trim() &&
-    data.datum &&
     data.locatie.trim() &&
     data.personen > 0 &&
     data.type;
@@ -54,28 +53,17 @@ export default function IntakeForm({ data, onChange, onVolgende }) {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <Label>Datum</Label>
-            <input
-              type="date"
-              value={data.datum}
-              onChange={(e) => onChange('datum', e.target.value)}
-              className={inputClass}
-            />
-          </div>
-          <div>
-            <Label>Aantal personen</Label>
-            <input
-              type="number"
-              min="1"
-              max="100"
-              value={data.personen}
-              onChange={(e) => onChange('personen', e.target.value)}
-              placeholder="Bijv. 8"
-              className={inputClass}
-            />
-          </div>
+        <div>
+          <Label>Aantal personen</Label>
+          <input
+            type="number"
+            min="1"
+            max="100"
+            value={data.personen}
+            onChange={(e) => onChange('personen', e.target.value)}
+            placeholder="Bijv. 8"
+            className={inputClass}
+          />
         </div>
 
         <div>
@@ -109,7 +97,7 @@ export default function IntakeForm({ data, onChange, onVolgende }) {
         disabled={!isGeldig}
         className="mt-8 w-full bg-stone-900 text-white font-semibold py-4 rounded-xl text-sm tracking-wide hover:bg-stone-800 active:scale-[0.98] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
       >
-        Controleer beschikbaarheid →
+        Kies een datum →
       </button>
     </div>
   );
