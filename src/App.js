@@ -5,11 +5,14 @@ import Services from './components/Services';
 import BookingFlow from './components/BookingFlow';
 import Footer from './components/Footer';
 import Admin from './components/Admin';
+import Privacy from './components/Privacy';
 
 const isAdmin = window.location.pathname === '/admin';
+const isPrivacy = window.location.pathname === '/privacy';
 
 function App() {
   if (isAdmin) return <Admin />;
+  if (isPrivacy) return <Privacy />;
 
   function scrollNaarBoeken() {
     document.getElementById('boeken')?.scrollIntoView({ behavior: 'smooth' });

@@ -30,9 +30,18 @@ export default function Footer() {
       </div>
 
       <div className="max-w-4xl mx-auto mt-12 pt-6 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-stone-600 text-xs tracking-wide">
-          © {new Date().getFullYear()} Chef Tijssen — Persoonlijk koken bij jou thuis
-        </p>
+        <div className="flex items-center gap-4">
+          <p style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-stone-600 text-xs tracking-wide">
+            © {new Date().getFullYear()} Chef Tijssen — Persoonlijk koken bij jou thuis
+          </p>
+          <a
+            href="/privacy"
+            style={{ fontFamily: 'Montserrat, sans-serif' }}
+            className="text-stone-600 text-xs tracking-wide hover:text-amber-400 transition-colors"
+          >
+            Privacyverklaring
+          </a>
+        </div>
         <a
           href="https://www.instagram.com/cheftijssen"
           target="_blank"
