@@ -6,12 +6,24 @@ import BookingFlow from './components/BookingFlow';
 import Footer from './components/Footer';
 import Admin from './components/Admin';
 import Privacy from './components/Privacy';
+import { SignedIn, SignedOut, SignIn } from '@clerk/clerk-react';
 
 const isAdmin = window.location.pathname === '/admin';
 const isPrivacy = window.location.pathname === '/privacy';
 
 function App() {
-  if (isAdmin) return <Admin />;
+  if (isAdmin) return (
+    <>
+      <SignedOut>
+        <div className="min-h-screen bg-stone-950 flex items-center justify-center px-6">
+          <SignIn routing="hash" />
+        </div>
+      </SignedOut>
+      <SignedIn>
+        <Admin />
+      </SignedIn>
+    </>
+  );
   if (isPrivacy) return <Privacy />;
 
   function scrollNaarBoeken() {

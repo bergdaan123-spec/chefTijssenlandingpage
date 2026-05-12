@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '@clerk/clerk-react';
 
 const MAANDEN = ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
 const DAGEN = ['ma','di','wo','do','vr','za','zo'];
@@ -51,10 +52,7 @@ function standaardVervaldatum() {
 }
 
 export default function Admin() {
-  const [ingelogd, setIngelogd] = useState(false);
-  const [wachtwoord, setWachtwoord] = useState('');
-  const [fout, setFout] = useState('');
-  const [adminSecret, setAdminSecret] = useState('');
+  const { getToken, signOut } = useAuth();
   const [tabBlad, setTabBlad] = useState('beschikbaarheid');
   const [gekozenLead, setGekozenLead] = useState(null);
 
@@ -70,7 +68,6 @@ export default function Admin() {
   const zichtJaar = huidigJaar + Math.floor((huidigMaand + maandOffset) / 12);
 
   useEffect(() => {
-    if (!ingelogd) return;
     fetch('/api/beschikbaarheid')
       .then(r => r.json())
       .then(data => {
@@ -79,41 +76,20 @@ export default function Admin() {
         setBeschikbaarheid(map);
         setGeladen(true);
       });
-  }, [ingelogd]);
-
-  async function login() {
-    if (!wachtwoord.trim()) return;
-    setFout('');
-    const res = await fetch('/api/beschikbaarheid', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${wachtwoord}` },
-      body: JSON.stringify({ datum: '2000-01-01', beschikbaar: true }),
-    });
-    if (res.status === 401) {
-      setFout('Verkeerd wachtwoord.');
-    } else if (res.status === 500) {
-      const body = await res.json().catch(() => ({}));
-      setFout(body.error?.includes('ADMIN_SECRET')
-        ? 'Server-fout: ADMIN_SECRET niet ingesteld in Vercel. Ga naar Settings → Environment Variables.'
-        : 'Server-fout — probeer opnieuw.');
-    } else {
-      setAdminSecret(wachtwoord);
-      setIngelogd(true);
-    }
-  }
+  }, []);
 
   async function toggleDag(datum) {
     if (datum < vandaag()) return;
     const huidig = beschikbaarheid[datum];
     const nieuw = huidig === false ? true : false;
     setBezig(datum);
+    const token = await getToken();
     const res = await fetch('/api/beschikbaarheid', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${adminSecret}` },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
       body: JSON.stringify({ datum, beschikbaar: nieuw }),
     });
-    if (res.status === 401) { setFout('Verkeerd wachtwoord.'); setIngelogd(false); }
-    else if (res.ok) { setBeschikbaarheid(prev => ({ ...prev, [datum]: nieuw })); }
+    if (res.ok) { setBeschikbaarheid(prev => ({ ...prev, [datum]: nieuw })); }
     setBezig(null);
   }
 
@@ -127,36 +103,10 @@ export default function Admin() {
 
   const dagen = getDagenInMaand(zichtJaar, zichtMaand);
 
-  if (!ingelogd) {
-    return (
-      <div className="min-h-screen bg-stone-950 flex items-center justify-center px-6">
-        <div className="bg-white rounded-3xl p-10 w-full max-w-sm shadow-xl">
-          <img src="/logo.png" alt="Chef Tijssen" className="w-32 mx-auto mb-8" />
-          <h1 style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-xl font-bold text-stone-900 text-center mb-6">
-            Admin — Chef Tijssen
-          </h1>
-          {fout && <p className="text-red-500 text-sm text-center mb-4">{fout}</p>}
-          <input
-            type="password"
-            placeholder="Wachtwoord"
-            value={wachtwoord}
-            onChange={e => setWachtwoord(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && login()}
-            className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-amber-400"
-          />
-          <button onClick={login} className="w-full bg-stone-900 text-white font-semibold py-3 rounded-xl text-sm hover:bg-stone-800 transition">
-            Inloggen
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   if (gekozenLead) {
     return (
       <FactuurBuilder
         lead={gekozenLead}
-        adminSecret={adminSecret}
         onTerug={() => setGekozenLead(null)}
       />
     );
@@ -177,7 +127,7 @@ export default function Admin() {
             </h1>
           </div>
           <button
-            onClick={() => { setIngelogd(false); setWachtwoord(''); }}
+            onClick={() => signOut()}
             className="text-stone-400 text-sm hover:text-stone-600 transition"
           >
             Uitloggen
@@ -270,26 +220,29 @@ export default function Admin() {
 
         {/* Aanvragen */}
         {tabBlad === 'aanvragen' && (
-          <Aanvragen adminSecret={adminSecret} onFactuur={setGekozenLead} />
+          <Aanvragen onFactuur={setGekozenLead} />
         )}
       </div>
     </div>
   );
 }
 
-function Aanvragen({ adminSecret, onFactuur }) {
+function Aanvragen({ onFactuur }) {
+  const { getToken } = useAuth();
   const [leads, setLeads] = useState([]);
   const [geladen, setGeladen] = useState(false);
   const [fout, setFout] = useState('');
 
   useEffect(() => {
-    fetch('/api/leads', {
-      headers: { 'Authorization': `Bearer ${adminSecret}` },
-    })
-      .then(r => r.json())
-      .then(data => { setLeads(data); setGeladen(true); })
-      .catch(() => setFout('Kon aanvragen niet laden.'));
-  }, [adminSecret]);
+    getToken().then(token =>
+      fetch('/api/leads', {
+        headers: { 'Authorization': `Bearer ${token}` },
+      })
+        .then(r => r.json())
+        .then(data => { setLeads(data); setGeladen(true); })
+        .catch(() => setFout('Kon aanvragen niet laden.'))
+    );
+  }, [getToken]);
 
   if (!geladen) return <div className="text-center py-12 text-stone-400 text-sm">Laden…</div>;
   if (fout) return <div className="text-center py-12 text-red-400 text-sm">{fout}</div>;
@@ -348,7 +301,8 @@ function Aanvragen({ adminSecret, onFactuur }) {
   );
 }
 
-function FactuurBuilder({ lead, adminSecret, onTerug }) {
+function FactuurBuilder({ lead, onTerug }) {
+  const { getToken } = useAuth();
   const typeLabel = TYPE_LABELS[lead.type] || lead.type;
   const prijspp = PRIJS_PP[lead.type] || 0;
 
@@ -380,9 +334,10 @@ function FactuurBuilder({ lead, adminSecret, onTerug }) {
     setBezig(true);
     setFout('');
     try {
+      const token = await getToken();
       const res = await fetch('/api/factuur', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${adminSecret}` },
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({
           klant: { naam: lead.naam, email: lead.email, locatie: lead.locatie },
           regels: regels.map(r => ({ ...r, bedrag: Number(r.bedrag) })),

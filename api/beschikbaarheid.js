@@ -1,4 +1,5 @@
 const { createClient } = require('@supabase/supabase-js');
+const { verifyToken } = require('@clerk/backend');
 
 const supabase = () => createClient(
   process.env.SUPABASE_URL,
@@ -23,11 +24,10 @@ module.exports = async function handler(req, res) {
 
   // POST — stel beschikbaarheid in (alleen admin)
   if (req.method === 'POST') {
-    const verwacht = process.env.ADMIN_SECRET;
-    if (!verwacht) {
-      return res.status(500).json({ error: 'ADMIN_SECRET niet ingesteld op server' });
-    }
-    if (req.headers.authorization !== `Bearer ${verwacht}`) {
+    try {
+      const token = req.headers.authorization?.split(' ')[1];
+      await verifyToken(token, { secretKey: process.env.CLERK_SECRET_KEY });
+    } catch {
       return res.status(401).json({ error: 'Niet geautoriseerd' });
     }
 
