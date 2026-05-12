@@ -237,18 +237,22 @@ function Aanvragen({ onFactuur }) {
     async function laadLeads() {
       try {
         const token = await getToken();
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 8000);
         const r = await fetch('/api/leads', {
           headers: { 'Authorization': `Bearer ${token}` },
+          signal: controller.signal,
         });
+        clearTimeout(timeout);
         const data = await r.json();
         if (Array.isArray(data)) {
           setLeads(data);
           setGeladen(true);
         } else {
-          setFout(`Fout: ${data.error || 'Onbekende fout'} — controleer CLERK_SECRET_KEY in Vercel.`);
+          setFout(`Fout: ${data.error || 'Onbekende fout'}`);
         }
       } catch (err) {
-        setFout('Kon aanvragen niet laden. Probeer opnieuw.');
+        setFout('Kon aanvragen niet laden — controleer of CLERK_SECRET_KEY is ingesteld in Vercel.');
       }
     }
     laadLeads();

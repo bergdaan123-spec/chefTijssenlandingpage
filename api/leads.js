@@ -2,6 +2,9 @@ const { createClient } = require('@supabase/supabase-js');
 const { verifyToken } = require('@clerk/backend');
 
 module.exports = async function handler(req, res) {
+  if (!process.env.CLERK_SECRET_KEY) {
+    return res.status(500).json({ error: 'CLERK_SECRET_KEY niet ingesteld in Vercel' });
+  }
   try {
     const token = req.headers.authorization?.split(' ')[1];
     await verifyToken(token, { secretKey: process.env.CLERK_SECRET_KEY });
