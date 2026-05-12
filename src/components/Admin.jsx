@@ -239,7 +239,14 @@ function Aanvragen({ onFactuur }) {
         headers: { 'Authorization': `Bearer ${token}` },
       })
         .then(r => r.json())
-        .then(data => { setLeads(data); setGeladen(true); })
+        .then(data => {
+          if (Array.isArray(data)) {
+            setLeads(data);
+            setGeladen(true);
+          } else {
+            setFout('Geen toegang — controleer of CLERK_SECRET_KEY is ingesteld in Vercel.');
+          }
+        })
         .catch(() => setFout('Kon aanvragen niet laden.'))
     );
   }, [getToken]);
