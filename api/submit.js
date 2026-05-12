@@ -166,17 +166,18 @@ module.exports = async function handler(req, res) {
             </table>
           </div>
 
-          <!-- Handtekening: tekst gecentreerd boven foto -->
+          <!-- Handtekening: foto boven tekst -->
           <div style="border-top:1px solid #e7e5e4;padding-top:24px;text-align:center;">
-            <p style="margin:0 0 4px;color:#1c1917;font-weight:600;font-size:15px;">Viego Tijssen</p>
-            <p style="margin:0;color:#78716c;font-size:13px;">Chef Tijssen — Persoonlijk koken bij jou thuis</p>
-            <p style="margin:4px 0 16px;font-size:13px;"><a href="https://cheftijssen.nl" style="color:#fbbf24;text-decoration:none;">cheftijssen.nl</a></p>
             <img
               src="https://www.cheftijssen.nl/viego.jpg"
               alt="Viego Tijssen"
               width="160"
-              style="display:inline-block;width:160px;height:200px;object-fit:cover;object-position:center top;border-radius:12px;"
+              style="display:inline-block;width:160px;height:200px;object-fit:cover;object-position:center top;border-radius:12px;margin-bottom:16px;"
             />
+            <p style="margin:0 0 4px;color:#1c1917;font-weight:600;font-size:15px;">Viego Tijssen</p>
+            <p style="margin:0;color:#78716c;font-size:13px;">Chef Tijssen — Persoonlijk koken bij jou thuis</p>
+            <p style="margin:4px 0 2px;font-size:13px;color:#78716c;">+31 6 55 62 29 88</p>
+            <p style="margin:0;font-size:13px;"><a href="https://cheftijssen.nl" style="color:#fbbf24;text-decoration:none;">cheftijssen.nl</a></p>
           </div>
         </div>
 

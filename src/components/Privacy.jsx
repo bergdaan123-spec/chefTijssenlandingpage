@@ -131,12 +131,12 @@ function Intro() {
       </p>
       <div style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-stone-600 text-sm space-y-1 leading-relaxed">
         <p className="font-semibold text-stone-800">Chef Tijssen</p>
-        <p>Amstelveen, 3166AA</p>
+        <p>Amsteldijk Zuid 33, 1184VC Amstelveen</p>
         <p>cheftijssen.nl</p>
-        <p>+31 6 57 55 31 33</p>
+        <p>+31 6 55 62 29 88</p>
       </div>
       <p className="text-stone-500 text-sm leading-relaxed mt-6">
-        Chef Tijssen, gevestigd aan Amstelveen, 3166AA, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring.
+        Chef Tijssen, gevestigd aan Amsteldijk Zuid 33, 1184VC Amstelveen, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring.
       </p>
     </div>
   );
