@@ -263,8 +263,8 @@ function Aanvragen({ onFactuur }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!geladen) return <div className="text-center py-12 text-stone-400 text-sm">Laden…</div>;
   if (fout) return <div className="text-center py-12 text-red-400 text-sm">{fout}</div>;
+  if (!geladen) return <div className="text-center py-12 text-stone-400 text-sm">Laden…</div>;
   if (leads.length === 0) return <div className="text-center py-12 text-stone-400 text-sm">Nog geen aanvragen.</div>;
 
   return (
