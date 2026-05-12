@@ -1,25 +1,39 @@
+const { webcrypto } = require('crypto');
+const subtle = webcrypto.subtle;
+
 async function verifeerClerkToken(token) {
   if (!token) throw new Error('Geen token');
 
   const parts = token.split('.');
   if (parts.length !== 3) throw new Error('Ongeldig token formaat');
 
+  const header = JSON.parse(Buffer.from(parts[0], 'base64url').toString());
   const payload = JSON.parse(Buffer.from(parts[1], 'base64url').toString());
-  const sessionId = payload.sid;
-  if (!sessionId) throw new Error('Geen session ID in token');
 
-  const secretKey = (process.env.CLERK_SECRET_KEY || '').replace(/[^\x20-\x7E]/g, '').trim();
-  const res = await fetch(`https://api.clerk.com/v1/sessions/${sessionId}`, {
-    headers: { Authorization: `Bearer ${secretKey}` },
-  });
+  if (!payload.iss) throw new Error('Geen issuer in token');
 
-  if (!res.ok) {
-    const body = await res.text().catch(() => '');
-    throw new Error(`Clerk ${res.status}: ${body.slice(0, 200)}`);
-  }
+  const now = Math.floor(Date.now() / 1000);
+  if (payload.exp && payload.exp < now) throw new Error('Token verlopen');
 
-  const sessie = await res.json();
-  if (sessie.status !== 'active') throw new Error(`Sessie status: ${sessie.status}`);
+  // Haal Clerk's publieke sleutels op — geen secret key nodig
+  const jwksRes = await fetch(`${payload.iss}/.well-known/jwks.json`);
+  if (!jwksRes.ok) throw new Error('JWKS ophalen mislukt');
+  const { keys } = await jwksRes.json();
+
+  const jwk = keys.find(k => !header.kid || k.kid === header.kid);
+  if (!jwk) throw new Error('Sleutel niet gevonden in JWKS');
+
+  const publicKey = await subtle.importKey(
+    'jwk', jwk,
+    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
+    false, ['verify']
+  );
+
+  const signingInput = Buffer.from(`${parts[0]}.${parts[1]}`);
+  const signature = Buffer.from(parts[2], 'base64url');
+  const valid = await subtle.verify('RSASSA-PKCS1-v1_5', publicKey, signature, signingInput);
+
+  if (!valid) throw new Error('Ongeldige token handtekening');
 }
 
 module.exports = { verifeerClerkToken };
