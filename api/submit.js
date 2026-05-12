@@ -108,7 +108,7 @@ module.exports = async function handler(req, res) {
   await resend.emails.send({
     from: 'Chef Tijssen <noreply@cheftijssen.nl>',
     to: email,
-    subject: `${naam}, je avond staat in de agenda 🍽️`,
+    subject: `Hey ${naam}, je aanvraag is binnengekomen!`,
     html: `
       <!DOCTYPE html>
       <html>
