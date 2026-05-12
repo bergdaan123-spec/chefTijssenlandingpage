@@ -252,6 +252,7 @@ function Aanvragen({ onFactuur }) {
       }
     }
     laadLeads();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!geladen) return <div className="text-center py-12 text-stone-400 text-sm">Laden…</div>;
