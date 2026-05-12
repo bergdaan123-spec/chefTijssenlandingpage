@@ -8,8 +8,9 @@ async function verifeerClerkToken(token) {
   const sessionId = payload.sid;
   if (!sessionId) throw new Error('Geen session ID in token');
 
+  const secretKey = (process.env.CLERK_SECRET_KEY || '').replace(/[^\x20-\x7E]/g, '').trim();
   const res = await fetch(`https://api.clerk.com/v1/sessions/${sessionId}`, {
-    headers: { Authorization: `Bearer ${process.env.CLERK_SECRET_KEY}` },
+    headers: { Authorization: `Bearer ${secretKey}` },
   });
 
   if (!res.ok) throw new Error('Sessie ongeldig');
