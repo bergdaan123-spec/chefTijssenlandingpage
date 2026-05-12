@@ -236,7 +236,11 @@ function Aanvragen({ onFactuur }) {
   useEffect(() => {
     async function laadLeads() {
       try {
-        const token = await getToken();
+        const token = await Promise.race([
+          getToken(),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('getToken timeout')), 5000)),
+        ]);
+        if (!token) { setFout('Geen sessie-token — probeer opnieuw in te loggen.'); return; }
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 8000);
         const r = await fetch('/api/leads', {
