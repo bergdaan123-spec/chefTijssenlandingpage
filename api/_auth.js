@@ -13,10 +13,13 @@ async function verifeerClerkToken(token) {
     headers: { Authorization: `Bearer ${secretKey}` },
   });
 
-  if (!res.ok) throw new Error('Sessie ongeldig');
+  if (!res.ok) {
+    const body = await res.text().catch(() => '');
+    throw new Error(`Clerk ${res.status}: ${body.slice(0, 200)}`);
+  }
 
   const sessie = await res.json();
-  if (sessie.status !== 'active') throw new Error('Sessie niet actief');
+  if (sessie.status !== 'active') throw new Error(`Sessie status: ${sessie.status}`);
 }
 
 module.exports = { verifeerClerkToken };
