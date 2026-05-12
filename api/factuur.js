@@ -6,7 +6,7 @@ const CHEF = {
   postcode: '1184VC Amstelveen',
   email: 'info@cheftijssen.nl',
   kvk: '42010518',
-  iban: 'NL00 XXXX 0000 0000 00', // ← vul hier het echte IBAN in
+  iban: process.env.CHEF_IBAN,
 };
 
 module.exports = async function handler(req, res) {
