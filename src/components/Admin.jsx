@@ -234,22 +234,25 @@ function Aanvragen({ onFactuur }) {
   const [fout, setFout] = useState('');
 
   useEffect(() => {
-    getToken().then(token =>
-      fetch('/api/leads', {
-        headers: { 'Authorization': `Bearer ${token}` },
-      })
-        .then(r => r.json())
-        .then(data => {
-          if (Array.isArray(data)) {
-            setLeads(data);
-            setGeladen(true);
-          } else {
-            setFout('Geen toegang — controleer of CLERK_SECRET_KEY is ingesteld in Vercel.');
-          }
-        })
-        .catch(() => setFout('Kon aanvragen niet laden.'))
-    );
-  }, [getToken]);
+    async function laadLeads() {
+      try {
+        const token = await getToken();
+        const r = await fetch('/api/leads', {
+          headers: { 'Authorization': `Bearer ${token}` },
+        });
+        const data = await r.json();
+        if (Array.isArray(data)) {
+          setLeads(data);
+          setGeladen(true);
+        } else {
+          setFout(`Fout: ${data.error || 'Onbekende fout'} — controleer CLERK_SECRET_KEY in Vercel.`);
+        }
+      } catch (err) {
+        setFout('Kon aanvragen niet laden. Probeer opnieuw.');
+      }
+    }
+    laadLeads();
+  }, []);
 
   if (!geladen) return <div className="text-center py-12 text-stone-400 text-sm">Laden…</div>;
   if (fout) return <div className="text-center py-12 text-red-400 text-sm">{fout}</div>;
