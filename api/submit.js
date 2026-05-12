@@ -166,24 +166,18 @@ module.exports = async function handler(req, res) {
             </table>
           </div>
 
-          <!-- Handtekening: naast elkaar op desktop, gestapeld op mobiel -->
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e7e5e4;">
-            <tr>
-              <td class="sig-tekst" valign="middle" style="padding-top:24px;width:55%;vertical-align:middle;">
-                <p style="margin:0 0 4px;color:#1c1917;font-weight:600;font-size:15px;">Viego Tijssen</p>
-                <p style="margin:0;color:#78716c;font-size:13px;">Chef Tijssen — Persoonlijk koken bij jou thuis</p>
-                <p style="margin:4px 0 0;font-size:13px;"><a href="https://cheftijssen.nl" style="color:#fbbf24;text-decoration:none;">cheftijssen.nl</a></p>
-              </td>
-              <td class="sig-foto" valign="middle" align="right" style="padding-top:24px;width:45%;vertical-align:middle;text-align:right;">
-                <img
-                  src="https://www.cheftijssen.nl/viego.jpg"
-                  alt="Viego Tijssen"
-                  width="160"
-                  style="display:inline-block;width:160px;height:200px;object-fit:cover;object-position:center top;border-radius:12px;"
-                />
-              </td>
-            </tr>
-          </table>
+          <!-- Handtekening: tekst gecentreerd boven foto -->
+          <div style="border-top:1px solid #e7e5e4;padding-top:24px;text-align:center;">
+            <p style="margin:0 0 4px;color:#1c1917;font-weight:600;font-size:15px;">Viego Tijssen</p>
+            <p style="margin:0;color:#78716c;font-size:13px;">Chef Tijssen — Persoonlijk koken bij jou thuis</p>
+            <p style="margin:4px 0 16px;font-size:13px;"><a href="https://cheftijssen.nl" style="color:#fbbf24;text-decoration:none;">cheftijssen.nl</a></p>
+            <img
+              src="https://www.cheftijssen.nl/viego.jpg"
+              alt="Viego Tijssen"
+              width="160"
+              style="display:inline-block;width:160px;height:200px;object-fit:cover;object-position:center top;border-radius:12px;"
+            />
+          </div>
         </div>
 
         <!-- Footer -->
