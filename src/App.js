@@ -16,7 +16,7 @@ function App() {
     <>
       <SignedOut>
         <div className="min-h-screen bg-stone-950 flex items-center justify-center px-6">
-          <SignIn routing="hash" />
+          <SignIn routing="hash" afterSignInUrl="/admin" afterSignUpUrl="/admin" />
         </div>
       </SignedOut>
       <SignedIn>
