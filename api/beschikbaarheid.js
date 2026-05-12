@@ -1,5 +1,5 @@
 const { createClient } = require('@supabase/supabase-js');
-const { verifyToken } = require('@clerk/backend');
+const { verifeerClerkToken } = require('./_auth');
 
 const supabase = () => createClient(
   process.env.SUPABASE_URL,
@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
   if (req.method === 'POST') {
     try {
       const token = req.headers.authorization?.split(' ')[1];
-      await verifyToken(token, { secretKey: process.env.CLERK_SECRET_KEY });
+      await verifeerClerkToken(token);
     } catch {
       return res.status(401).json({ error: 'Niet geautoriseerd' });
     }

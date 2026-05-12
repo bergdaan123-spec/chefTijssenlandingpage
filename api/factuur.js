@@ -1,5 +1,5 @@
 const { Resend } = require('resend');
-const { verifyToken } = require('@clerk/backend');
+const { verifeerClerkToken } = require('./_auth');
 
 const CHEF = {
   naam: 'Chef Tijssen',
@@ -14,7 +14,7 @@ module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
   try {
     const token = req.headers.authorization?.split(' ')[1];
-    await verifyToken(token, { secretKey: process.env.CLERK_SECRET_KEY });
+    await verifeerClerkToken(token);
   } catch {
     return res.status(401).json({ error: 'Unauthorized' });
   }
