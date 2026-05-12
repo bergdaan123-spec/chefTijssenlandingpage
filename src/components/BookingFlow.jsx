@@ -8,6 +8,7 @@ const STAPPEN = ['Gegevens', 'Beschikbaarheid', 'Bevestiging'];
 const LEEG_FORMULIER = {
   naam: '',
   email: '',
+  telefoon: '',
   datum: '',
   locatie: '',
   personen: '',

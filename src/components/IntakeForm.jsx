@@ -20,6 +20,7 @@ export default function IntakeForm({ data, onChange, onVolgende }) {
   const isGeldig =
     data.naam.trim() &&
     data.email.trim() &&
+    data.telefoon.trim() &&
     data.locatie.trim() &&
     data.personen > 0 &&
     data.type;
@@ -49,6 +50,17 @@ export default function IntakeForm({ data, onChange, onVolgende }) {
             value={data.email}
             onChange={(e) => onChange('email', e.target.value)}
             placeholder="jouw@email.nl"
+            className={inputClass}
+          />
+        </div>
+
+        <div>
+          <Label>Telefoonnummer (voor WhatsApp contact)</Label>
+          <input
+            type="tel"
+            value={data.telefoon}
+            onChange={(e) => onChange('telefoon', e.target.value)}
+            placeholder="+31 6 00 000 000"
             className={inputClass}
           />
         </div>

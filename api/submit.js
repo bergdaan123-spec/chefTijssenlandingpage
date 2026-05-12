@@ -13,9 +13,9 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { naam, email, datum, locatie, personen, type } = req.body;
+  const { naam, email, telefoon, datum, locatie, personen, type } = req.body;
 
-  if (!naam || !email || !datum || !locatie || !personen || !type) {
+  if (!naam || !email || !telefoon || !datum || !locatie || !personen || !type) {
     return res.status(400).json({ error: 'Ontbrekende velden' });
   }
 
@@ -27,6 +27,7 @@ module.exports = async function handler(req, res) {
   const { error: dbError } = await supabase.from('leads').insert({
     naam,
     email,
+    telefoon,
     datum,
     locatie,
     personen: parseInt(personen, 10),
@@ -43,6 +44,8 @@ module.exports = async function handler(req, res) {
 
   const resend = new Resend(process.env.RESEND_API_KEY);
   const typeLabel = TYPE_LABELS[type] || type;
+  const whatsappNummer = telefoon.replace(/\D/g, '').replace(/^0/, '31');
+  const whatsappLink = `https://wa.me/${whatsappNummer}`;
   const datumFormatted = new Date(datum + 'T00:00:00').toLocaleDateString('nl-NL', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   });
@@ -81,12 +84,18 @@ module.exports = async function handler(req, res) {
               <td style="padding:12px 0;color:#78716c;">Personen</td>
               <td style="padding:12px 0;color:#1c1917;">${personen}</td>
             </tr>
+            <tr style="border-bottom:1px solid #e7e5e4;">
+              <td style="padding:12px 0;color:#78716c;">Telefoon</td>
+              <td style="padding:12px 0;color:#1c1917;">${telefoon}</td>
+            </tr>
             <tr>
               <td style="padding:12px 0;color:#78716c;">Type</td>
               <td style="padding:12px 0;color:#1c1917;">${typeLabel}</td>
             </tr>
           </table>
-          <p style="margin-top:28px;font-size:13px;color:#78716c;line-height:1.6;">Beantwoord deze mail om de klant te contacteren.</p>
+          <a href="${whatsappLink}" style="display:inline-block;margin-top:28px;background:#25D366;color:#ffffff;font-size:14px;font-weight:600;padding:14px 28px;border-radius:10px;text-decoration:none;">
+            Open WhatsApp chat met ${naam}
+          </a>
         </div>
         <div style="background:#0f0f0f;padding:20px 40px;text-align:center;">
           <p style="margin:0;color:#444;font-size:11px;letter-spacing:0.1em;">CHEF TIJSSEN &nbsp;·&nbsp; Persoonlijk koken bij jou thuis</p>
