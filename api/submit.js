@@ -108,7 +108,7 @@ module.exports = async function handler(req, res) {
   await resend.emails.send({
     from: 'Chef Tijssen <noreply@cheftijssen.nl>',
     to: email,
-    subject: `Hey ${naam}, je aanvraag is binnengekomen!`,
+    subject: `Hey ${naam.split(' ')[0]}, je aanvraag is binnengekomen!`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -133,12 +133,9 @@ module.exports = async function handler(req, res) {
 
         <!-- Body -->
         <div style="padding:40px 40px 32px;background:#fafaf9;">
-          <h2 style="margin:0 0 16px;color:#1c1917;font-size:22px;font-weight:600;text-align:center;">Hoi ${naam},</h2>
-          <p style="margin:0 0 16px;color:#44403c;line-height:1.8;font-size:15px;text-align:center;">
-            Bedankt voor het kiezen van Chef Tijssen. Het is fijn dat je jouw avond aan mij toevertrouwt — ik ga er iets moois van maken.
-          </p>
+          <h2 style="margin:0 0 16px;color:#1c1917;font-size:22px;font-weight:600;text-align:center;">Hoi ${naam.split(' ')[0]},</h2>
           <p style="margin:0 0 32px;color:#44403c;line-height:1.8;font-size:15px;text-align:center;">
-            Ik neem binnen 24 uur persoonlijk contact met je op om alles door te spreken.
+            Bedankt voor je interesse in Chef Tijssen. Je aanvraag is goed aangekomen — ik neem binnen 24 uur persoonlijk contact met je op om te bespreken of we iets moois kunnen plannen.
           </p>
 
           <!-- Aanvraag samenvatting -->
