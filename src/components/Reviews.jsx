@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const REVIEWS = [
   {
@@ -42,6 +42,7 @@ function Sterren({ aantal }) {
 export default function Reviews() {
   const [actief, setActief] = useState(0);
   const [fade, setFade] = useState(true);
+  const touchStartX = useRef(null);
 
   const wissel = useCallback((volgend) => {
     setFade(false);
@@ -57,6 +58,22 @@ export default function Reviews() {
     }, 5000);
     return () => clearInterval(timer);
   }, [actief, wissel]);
+
+  const onTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) < 40) return;
+    if (delta > 0) {
+      wissel((actief + 1) % REVIEWS.length);
+    } else {
+      wissel((actief - 1 + REVIEWS.length) % REVIEWS.length);
+    }
+    touchStartX.current = null;
+  };
 
   const r = REVIEWS[actief];
 
@@ -77,8 +94,10 @@ export default function Reviews() {
 
         {/* Card */}
         <div
-          className="bg-stone-900 rounded-3xl p-10 md:p-14 border border-stone-800 text-center"
+          className="bg-stone-900 rounded-3xl p-10 md:p-14 border border-stone-800 text-center cursor-grab active:cursor-grabbing select-none"
           style={{ transition: 'opacity 0.3s ease', opacity: fade ? 1 : 0 }}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
         >
           <Sterren aantal={r.sterren} />
 
