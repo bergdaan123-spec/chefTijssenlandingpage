@@ -55,7 +55,7 @@ function App() {
 
       {/* Zwevende WhatsApp knop */}
       <a
-        href="https://wa.me/31655622988?text=Hallo%20Chef%20Tijssen%2C%20ik%20heb%20een%20vraag!"
+        href="https://wa.me/31655622988"
         target="_blank"
         rel="noreferrer"
         aria-label="Stel een vraag via WhatsApp"
