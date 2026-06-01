@@ -4,14 +4,14 @@ const DIENSTEN = [
     omschrijving: 'Een volledig driegangendiner bereid in jouw eigen keuken. Van amuse tot dessert — jij hoeft alleen maar te genieten.',
     icon: '🍽️',
     prijs: '€ 55,-',
-    detail: 'p.p. · vanaf 4 personen',
+    detail: 'p.p. · vanaf 4 personen · excl. drank',
   },
   {
     titel: '5 gangen diner',
     omschrijving: 'Een uitgebreide culinaire avond met vijf gangen vol smaak en verfijning. Perfect voor een bijzondere gelegenheid.',
     icon: '⭐',
     prijs: '€ 70,-',
-    detail: 'p.p. · vanaf 4 personen',
+    detail: 'p.p. · vanaf 4 personen · excl. drank',
   },
   {
     titel: 'Groot feest',
