@@ -2,6 +2,7 @@ import './index.css';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
+import Reviews from './components/Reviews';
 import BookingFlow from './components/BookingFlow';
 import Footer from './components/Footer';
 import Admin from './components/Admin';
@@ -48,6 +49,7 @@ function App() {
       <Hero onBoeken={scrollNaarBoeken} />
       <About />
       <Services />
+      <Reviews />
       <BookingFlow />
       <Footer />
     </div>
